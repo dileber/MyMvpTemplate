@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<template
+    format="2"
+    revision="2"
+    name="MVP ListActivity"
+    minApi="7"
+    minBuildApi="14"
+    description="Creates a new MVP listActivity">
+
+    <category value="MVP" />
+    <formfactor value="Mobile" />
+
+    <parameter
+        id="activityClass"
+        name="Activity Name"
+        type="string"
+        constraints="class|unique|nonempty"
+        suggest="${layoutToActivity(layoutName)}"
+        default="MainActivity"
+        help="The name of the activity class to create" />
+
+    <parameter
+        id="layoutName"
+        name="Layout Name"
+        type="string"
+        constraints="layout|unique|nonempty"
+        suggest="${activityToLayout(activityClass)}"
+        default="activity_main"
+        help="The name of the layout to create for the activity" />
+
+    <parameter
+        id="isLauncher"
+        name="Launcher Activity"
+        type="boolean"
+        default="false"
+        help="If true, this activity will have a CATEGORY_LAUNCHER intent filter, making it visible in the launcher" />
+
+    <parameter
+        id="packageName"
+        name="Package name"
+        type="string"
+        constraints="package"
+        default="com.mycompany.myapp" />
+
+    <parameter
+        id="viewClass"
+        name="View Name"
+        type="string"
+        constraints="class|nonempty|unique"
+        default="MainView"
+        suggest="${underscoreToCamelCase(classToResource(activityClass))}View"
+        help="The name of the View to create" />
+
+    
+
+    <parameter
+        id="presenterClass"
+        name="Presenter Name"
+        type="string"
+        constraints="class|nonempty|unique"
+        default="MainPresenter"
+        suggest="${underscoreToCamelCase(classToResource(activityClass))}Presenter"
+        help="The name of the Presenter to create" />
+
+    <parameter
+        id="listName"
+        name="列表名称"
+        type="string"
+        constraints="unique|nonempty"
+        default="列表名称" />
+
+                <parameter
+        id="adapterClass"
+        name="Adapter Name"
+        type="string"
+        constraints="class|nonempty|unique"
+        default="MainAdapter"
+        suggest="${underscoreToCamelCase(classToResource(activityClass))}Adapter"
+        help="The name of the Adapter to create" />
+
+            <parameter
+        id="viewHolderClass"
+        name="ViewHolder Name"
+        type="string"
+        constraints="class|nonempty|unique"
+        default="MainViewHolder"
+        suggest="${underscoreToCamelCase(classToResource(activityClass))}ViewHolder"
+        help="The name of the ViewHolder to create" />
+
+    <globals file="globals.xml.ftl" />
+    <execute file="recipe.xml.ftl" />
+
+</template>  
